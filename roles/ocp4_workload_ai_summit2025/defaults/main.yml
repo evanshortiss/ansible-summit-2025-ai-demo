@@ -128,3 +128,15 @@ ocp4_workload_ai_summit2025_openshift_gitops_resource_customizations: |
   #     return hs
 
 ocp4_workload_ai_summit2025_openshift_gitops_ignore_differences: {}
+
+# ------------------------------------------------
+# AMQ Streams
+# ------------------------------------------------
+
+ocp4_workload_ai_summit2025_amq_streams_application_namespace: openshift-gitops
+ocp4_workload_ai_summit2025_amq_streams_application_name: amq-streams
+ocp4_workload_ai_summit2025_amq_streams_namespace: kafka
+ocp4_workload_ai_summit2025_amq_streams_gitops_repo: https://github.com/btison/summit2025-ai-demo-helm.git
+ocp4_workload_ai_summit2025_amq_streams_gitops_repo_tag: main
+ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path: amq-streams
+

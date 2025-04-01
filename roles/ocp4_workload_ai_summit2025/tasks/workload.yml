@@ -2,3 +2,6 @@
 
 - name: Install OpenShift Gitops
   ansible.builtin.include_tasks: openshift_gitops.yml
+
+- name: Install AMQ Streams
+  ansible.builtin.include_tasks: amq-streams.yml
