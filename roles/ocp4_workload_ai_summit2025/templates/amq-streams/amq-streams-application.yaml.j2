@@ -26,3 +26,17 @@ spec:
     repoURL: {{ ocp4_workload_ai_summit2025_amq_streams_gitops_repo }}
     targetRevision: {{ ocp4_workload_ai_summit2025_amq_streams_gitops_repo_tag }}
     path: {{ ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path }}
+    helm:
+      valuesObject:
+        kafka-broker:
+          namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}
+          nameOverride: {{ ocp4_workload_ai_summit2025_amq_streams_broker_name }}
+          kafka:
+            listener:
+              external:
+                tls:
+                  secret:
+                    key:
+                    value:
+                      crt: {{ ocp4_workload_ai_summit2025_openshift_ingress_cert }}
+                      key: {{ ocp4_workload_ai_summit2025_openshift_ingress_key }}

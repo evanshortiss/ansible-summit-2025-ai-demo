@@ -4,6 +4,8 @@ silent: false
 guid: smt
 num_users: 5
 
+ocp4_workload_ai_summit2025_openshift_ingress_secret_certs: ingress-certs
+
 # ------------------------------------------------
 # OpenShift Gitops
 # ------------------------------------------------
@@ -140,3 +142,5 @@ ocp4_workload_ai_summit2025_amq_streams_gitops_repo: https://github.com/btison/s
 ocp4_workload_ai_summit2025_amq_streams_gitops_repo_tag: main
 ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path: amq-streams
 
+ocp4_workload_ai_summit2025_amq_streams_broker_namespace: kafka
+ocp4_workload_ai_summit2025_amq_streams_broker_name: kafka

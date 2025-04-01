@@ -1,5 +1,27 @@
 ---
 
+- name: Get OpenShift ingress certificate secret
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    name: "{{ ocp4_workload_ai_summit2025_openshift_ingress_secret_certs }}"
+    namespace: openshift-ingress
+  register: r_secret_ingress_cert
+  retries: 120
+  delay: 10
+  ignore_errors: true
+  until:
+    - r_secret_ingress_cert is defined
+    - r_secret_ingress_cert.resources is defined
+    - r_secret_ingress_cert.resources | length > 0
+    - r_secret_ingress_cert.resources[0] is defined
+    - r_secret_ingress_cert.resources[0].data is defined
+
+- name: Get OpenShift ingress certificate and private key"
+  ansible.builtin.set_fact:
+    ocp4_workload_ai_summit2025_openshift_ingress_cert: "{{ r_secret_ingress_cert | json_query('resources[0].data.\"tls.crt\"') }}"
+    ocp4_workload_ai_summit2025_openshift_ingress_key: "{{ r_secret_ingress_cert | json_query('resources[0].data.\"tls.key\"') }}"
+
 - name: Create AMQ Streams application
   kubernetes.core.k8s:
     state: present
