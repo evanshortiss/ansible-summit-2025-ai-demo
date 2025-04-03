@@ -43,3 +43,7 @@ spec:
         amq-streams-console:
           namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}
           subdomain: {{ r_openshift_subdomain }}
+        kafka-topics:
+          kafka:
+            namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}
+            cluster: {{ ocp4_workload_ai_summit2025_amq_streams_broker_name }}
