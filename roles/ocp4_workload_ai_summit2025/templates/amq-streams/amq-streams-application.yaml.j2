@@ -40,3 +40,6 @@ spec:
                     value:
                       crt: {{ ocp4_workload_ai_summit2025_openshift_ingress_cert }}
                       key: {{ ocp4_workload_ai_summit2025_openshift_ingress_key }}
+        amq-streams-console:
+          namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}
+          subdomain: {{ r_openshift_subdomain }}
