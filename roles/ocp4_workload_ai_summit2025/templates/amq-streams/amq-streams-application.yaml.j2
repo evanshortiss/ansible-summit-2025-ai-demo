@@ -12,7 +12,9 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
     retry:
       backoff:
         duration: 5s
