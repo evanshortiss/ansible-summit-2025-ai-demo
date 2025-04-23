@@ -5,3 +5,6 @@
 
 - name: Install AMQ Streams
   ansible.builtin.include_tasks: amq-streams.yml
+
+- name: Install Parasol Application
+  ansible.builtin.include_tasks: parasol.yml

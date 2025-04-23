@@ -144,3 +144,14 @@ ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path: amq-streams
 
 ocp4_workload_ai_summit2025_amq_streams_broker_namespace: kafka
 ocp4_workload_ai_summit2025_amq_streams_broker_name: kafka
+
+# ------------------------------------------------
+# Parasol Application
+# ------------------------------------------------
+
+ocp4_workload_ai_summit2025_parasol_application_repo: https://github.com/btison/summit2025-ai-demo-helm.git
+ocp4_workload_ai_summit2025_parasol_application_repo_tag: main
+ocp4_workload_ai_summit2025_parasol_application_repo_path: parasol
+ocp4_workload_ai_summit2025_parasol_application_name: parasol
+ocp4_workload_ai_summit2025_parasol_application_namespace: openshift-gitops
+ocp4_workload_ai_summit2025_parasol_namespace: parasol
