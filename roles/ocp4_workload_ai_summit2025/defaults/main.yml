@@ -146,6 +146,22 @@ ocp4_workload_ai_summit2025_amq_streams_broker_namespace: kafka
 ocp4_workload_ai_summit2025_amq_streams_broker_name: kafka
 
 # ------------------------------------------------
+# Milvus
+# ------------------------------------------------
+
+ocp4_workload_ai_summit2025_milvus_application_repo: https://github.com/btison/summit2025-ai-demo-helm.git
+ocp4_workload_ai_summit2025_milvus_application_repo_tag: main
+ocp4_workload_ai_summit2025_milvus_application_repo_path: milvus
+ocp4_workload_ai_summit2025_milvus_application_name: milvus
+ocp4_workload_ai_summit2025_milvus_application_namespace: openshift-gitops
+ocp4_workload_ai_summit2025_milvus_namespace: milvus
+ocp4_workload_ai_summit2025_milvus_minio_accesskey: minioadmin
+ocp4_workload_ai_summit2025_milvus_minio_secretkey: minioadmin
+ocp4_workload_ai_summit2025_milvus_username: root
+ocp4_workload_ai_summit2025_milvus_password: Milvus
+ocp4_workload_ai_summit2025_milvus_service: vectordb-milvus
+
+# ------------------------------------------------
 # Parasol Application
 # ------------------------------------------------
 
