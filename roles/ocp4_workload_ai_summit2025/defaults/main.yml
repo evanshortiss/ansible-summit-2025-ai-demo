@@ -144,6 +144,10 @@ ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path: amq-streams
 
 ocp4_workload_ai_summit2025_amq_streams_broker_namespace: kafka
 ocp4_workload_ai_summit2025_amq_streams_broker_name: kafka
+ocp4_workload_ai_summit2025_amq_streams_security_protocol: SASL_PLAINTEXT
+ocp4_workload_ai_summit2025_amq_streams_sasl_mechanism: SCRAM-SHA-512
+ocp4_workload_ai_summit2025_amq_streams_client_id: parasol
+ocp4_workload_ai_summit2025_amq_streams_client_secret: parasol
 
 # ------------------------------------------------
 # Milvus
@@ -171,3 +175,46 @@ ocp4_workload_ai_summit2025_parasol_application_repo_path: parasol
 ocp4_workload_ai_summit2025_parasol_application_name: parasol
 ocp4_workload_ai_summit2025_parasol_application_namespace: openshift-gitops
 ocp4_workload_ai_summit2025_parasol_namespace: parasol
+ocp4_workload_ai_summit2025_parasol_db_service: parasol-db
+ocp4_workload_ai_summit2025_parasol_finance_api_service: finance-api
+
+# ------------------------------------------------
+# Parasol AI Application
+# ------------------------------------------------
+
+ocp4_workload_ai_summit2025_parasol_ai_application_repo: https://github.com/btison/summit2025-ai-demo-helm.git
+ocp4_workload_ai_summit2025_parasol_ai_application_repo_tag: main
+ocp4_workload_ai_summit2025_parasol_ai_application_repo_path: parasol-ai
+ocp4_workload_ai_summit2025_parasol_ai_application_name: parasol-ai
+ocp4_workload_ai_summit2025_parasol_ai_application_namespace: openshift-gitops
+ocp4_workload_ai_summit2025_parasol_ai_namespace: parasol-ai
+
+ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_model_name: "{{ structure_message_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_api_key: "{{ structure_message_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_base_url: "{{ structure_message_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_router_llm_model_name: "{{ router_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_router_llm_api_key: "{{ router_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_router_llm_base_url: "{{ router_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_finance_llm_model_name: "{{ finance_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_finance_llm_api_key: "{{ finance_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_finance_llm_base_url: "{{ finance_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_support_llm_model_name: "{{ support_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_llm_api_key: "{{ support_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_llm_base_url: "{{ support_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_support_embedding_model_name: "{{ support_embedding_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_embedding_api_key: "{{ support_embedding_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_embedding_base_url: "{{ support_embedding_base_url }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_embedding_set_dimension: "{{ support_embedding_set_dimension }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_milvus_collection: support_openai
+
+ocp4_workload_ai_summit2025_parasol_ai_website_llm_model_name: "{{ website_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_website_llm_api_key: "{{ website_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_website_llm_base_url: "{{ website_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_model_name: "{{ moderation_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_api_key: "{{ moderation_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_base_url: "{{ moderation_llm_base_url }}"

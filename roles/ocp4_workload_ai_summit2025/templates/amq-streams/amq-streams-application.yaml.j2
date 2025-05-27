@@ -42,9 +42,20 @@ spec:
                     value:
                       crt: {{ ocp4_workload_ai_summit2025_openshift_ingress_cert }}
                       key: {{ ocp4_workload_ai_summit2025_openshift_ingress_key }}
+          authentication:
+            clientId: {{ ocp4_workload_ai_summit2025_amq_streams_client_id }}
+            clientSecret: ocp4_workload_ai_summit2025_amq_streams_client_secret
+            securityProtocol: {{ ocp4_workload_ai_summit2025_amq_streams_security_protocol }}
+            saslMechanism: {{ ocp4_workload_ai_summit2025_amq_streams_sasl_mechanism }}
         amq-streams-console:
           namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}
           subdomain: {{ r_openshift_subdomain }}
+          kafka:
+            name: {{ ocp4_workload_ai_summit2025_amq_streams_broker_name }}
+            authentication:
+              saslMechanism: {{ ocp4_workload_ai_summit2025_amq_streams_sasl_mechanism }}
+              securityProtocol: {{ ocp4_workload_ai_summit2025_amq_streams_security_protocol }}
+            authorization: simple
         kafka-topics:
           kafka:
             namespace: {{ ocp4_workload_ai_summit2025_amq_streams_broker_namespace }}

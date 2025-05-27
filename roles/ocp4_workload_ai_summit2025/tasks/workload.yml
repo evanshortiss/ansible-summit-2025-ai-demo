@@ -11,3 +11,6 @@
 
 - name: Install Parasol Application
   ansible.builtin.include_tasks: parasol.yml
+
+- name: Install Parasol AI application
+  ansible.builtin.include_tasks: parasol_ai.yml

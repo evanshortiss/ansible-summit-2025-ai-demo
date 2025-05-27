@@ -1,0 +1,36 @@
+[all:vars]
+
+# structure-message
+structure_message_llm_api_key=
+structure_message_llm_model_name=
+structure_message_llm_base_url=
+
+# router
+router_llm_api_key=
+router_llm_model_name=
+router_llm_base_url=
+
+# finance
+finance_llm_api_key=
+finance_llm_model_name=
+finance_llm_base_url=
+
+# support
+support_llm_api_key=
+support_llm_model_name=
+support_llm_base_url=
+support_embedding_set_dimension=
+
+support_embedding_api_key=
+support_embedding_model_name=
+support_embedding_base_url=
+
+# website
+website_llm_api_key=
+website_llm_model_name=
+website_llm_base_url=
+
+# moderation
+moderation_llm_api_key=
+moderation_llm_model_name=
+moderation_llm_base_url=
