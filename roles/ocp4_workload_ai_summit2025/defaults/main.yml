@@ -189,9 +189,9 @@ ocp4_workload_ai_summit2025_parasol_ai_application_name: parasol-ai
 ocp4_workload_ai_summit2025_parasol_ai_application_namespace: openshift-gitops
 ocp4_workload_ai_summit2025_parasol_ai_namespace: parasol-ai
 
-ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_model_name: "{{ structure_message_llm_model_name }}"
-ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_api_key: "{{ structure_message_llm_api_key }}"
-ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_base_url: "{{ structure_message_llm_base_url }}"
+ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_model_name: "{{ structured_output_llm_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_api_key: "{{ structured_output_llm_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_base_url: "{{ structured_output_llm_base_url }}"
 
 ocp4_workload_ai_summit2025_parasol_ai_router_llm_model_name: "{{ router_llm_model_name }}"
 ocp4_workload_ai_summit2025_parasol_ai_router_llm_api_key: "{{ router_llm_api_key }}"

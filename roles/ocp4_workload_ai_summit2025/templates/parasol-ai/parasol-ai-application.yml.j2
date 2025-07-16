@@ -25,13 +25,13 @@ spec:
           clientId: {{ ocp4_workload_ai_summit2025_amq_streams_client_id }}
           clientSecret: {{ ocp4_workload_ai_summit2025_amq_streams_client_secret }}
 
-        structure-message:
+        structured-output:
           kafka:
             <<: *kafka
           llm:
-            modelName: {{ ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_model_name }}
-            apiKey: {{ ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_api_key }}
-            baseUrl: {{ ocp4_workload_ai_summit2025_parasol_ai_structure_message_llm_base_url }}
+            modelName: {{ ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_model_name }}
+            apiKey: {{ ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_api_key }}
+            baseUrl: {{ ocp4_workload_ai_summit2025_parasol_ai_structured_output_llm_base_url }}
 
         customer-data:
           kafka:

@@ -6,9 +6,9 @@ moderation_llm_model_name=
 moderation_llm_base_url=
 
 # structured_output
-structure_message_llm_api_key=
-structure_message_llm_model_name=
-structure_message_llm_base_url=
+structured_output_llm_api_key=
+structured_output_llm_model_name=
+structured_output_llm_base_url=
 
 # router
 router_llm_api_key=
