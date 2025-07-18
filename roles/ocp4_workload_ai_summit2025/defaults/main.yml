@@ -208,7 +208,7 @@ ocp4_workload_ai_summit2025_parasol_ai_support_llm_base_url: "{{ support_llm_bas
 ocp4_workload_ai_summit2025_parasol_ai_support_embedding_model_name: "{{ support_embedding_model_name }}"
 ocp4_workload_ai_summit2025_parasol_ai_support_embedding_api_key: "{{ support_embedding_api_key }}"
 ocp4_workload_ai_summit2025_parasol_ai_support_embedding_base_url: "{{ support_embedding_base_url }}"
-ocp4_workload_ai_summit2025_parasol_ai_support_embedding_set_dimension: "{{ support_embedding_set_dimension }}"
+ocp4_workload_ai_summit2025_parasol_ai_support_embedding_set_dimension: "true"
 ocp4_workload_ai_summit2025_parasol_ai_support_milvus_collection: support_openai
 
 ocp4_workload_ai_summit2025_parasol_ai_website_llm_model_name: "{{ website_llm_model_name }}"
@@ -218,3 +218,10 @@ ocp4_workload_ai_summit2025_parasol_ai_website_llm_base_url: "{{ website_llm_bas
 ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_model_name: "{{ moderation_llm_model_name }}"
 ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_api_key: "{{ moderation_llm_api_key }}"
 ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_base_url: "{{ moderation_llm_base_url }}"
+
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_model_name: "{{ document_embedding_model_name }}"
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_api_key: "{{ document_embedding_api_key }}"
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_base_url: "{{ document_embedding_base_url }}"
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_set_dimension: "true"
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_collection: support_openai
+ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_drop_collection: false

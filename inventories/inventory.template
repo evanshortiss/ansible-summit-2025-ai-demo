@@ -24,7 +24,6 @@ finance_llm_base_url=
 support_llm_api_key=
 support_llm_model_name=
 support_llm_base_url=
-support_embedding_set_dimension=
 
 support_embedding_api_key=
 support_embedding_model_name=
@@ -34,3 +33,8 @@ support_embedding_base_url=
 website_llm_api_key=
 website_llm_model_name=
 website_llm_base_url=
+
+# document-embedding
+document_embedding_model_name=
+document_embedding_api_key=
+document_embedding_base_url=

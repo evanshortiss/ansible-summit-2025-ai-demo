@@ -96,7 +96,21 @@ spec:
           llm:
             modelName: {{ ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_model_name }}
             apiKey: {{ ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_api_key }}
-            baseUrl: {{ ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_base_url }}          
+            baseUrl: {{ ocp4_workload_ai_summit2025_parasol_ai_moderation_llm_base_url }}
+        document-embedding:
+          kafka:
+            <<: *kafka
+          embedding:
+            modelName: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_model_name }}
+            apiKey: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_api_key }}
+            baseUrl: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_base_url }}
+            setDimension: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_set_dimension }}
+          milvus:
+            url: http://{{ ocp4_workload_ai_summit2025_milvus_service }}.{{ ocp4_workload_ai_summit2025_milvus_namespace }}.svc.cluster.local:19530
+            username: {{ ocp4_workload_ai_summit2025_milvus_username }}
+            password: {{ ocp4_workload_ai_summit2025_milvus_password }}
+            collection: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_collection }}
+            dropCollection: {{ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_drop_collection }}
 
   syncPolicy:
     automated:
