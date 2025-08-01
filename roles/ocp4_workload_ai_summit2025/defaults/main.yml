@@ -10,7 +10,7 @@ ocp4_workload_ai_summit2025_openshift_ingress_secret_certs: ingress-certs
 # OpenShift Gitops
 # ------------------------------------------------
 
-ocp4_workload_ai_summit2025_openshift_gitops_operator_install: true
+ocp4_workload_ai_summit2025_openshift_gitops_operator_install: "{{ openshift_gitops_operator_install }}"
 ocp4_workload_ai_summit2025_openshift_gitops_operator_channel: latest
 ocp4_workload_ai_summit2025_openshift_gitops_operator_automatic_install_plan_approval: true
 ocp4_workload_ai_summit2025_openshift_gitops_operator_starting_csv: ""

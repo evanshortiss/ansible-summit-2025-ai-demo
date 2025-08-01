@@ -1,7 +1,7 @@
 [all:vars]
 
 # set this to false if the openshift-gitops operator is already installed
-ocp4_workload_ai_summit2025_openshift_gitops_operator_install=true
+openshift_gitops_operator_install=true
 
 # default model configuration to use for all services
 default_llm_api_key=
