@@ -1,6 +1,9 @@
 [all:vars]
 
-# default model configuration
+# set this to false if the openshift-gitops operator is already installed
+ocp4_workload_ai_summit2025_openshift_gitops_operator_install=true
+
+# default model configuration to use for all services
 default_llm_api_key=
 default_llm_model_name=gpt-4o-mini
 default_llm_base_url=https://api.openai.com/v1

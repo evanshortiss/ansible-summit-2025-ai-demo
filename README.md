@@ -23,7 +23,7 @@ The following models have been successfully used with this demo:
 
 * Clone this project to your workstation.
 * Copy the `inventories/inventory.template` file to `inventories/inventory`.
-* For each of the AI services, add the model name and the base URL and API Key to access the model.
+* Add a default model and API Key, or for each of the AI services, add the model name and the base URL and API Key to access the model.
 * Open a terminal, and login to your OpenShift cluster as admin.
 * Change directory to the root of the project.
 * Run the Ansible playbook:

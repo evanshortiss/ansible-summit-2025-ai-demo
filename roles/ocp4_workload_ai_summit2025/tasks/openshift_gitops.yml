@@ -3,6 +3,7 @@
 - name: Install OpenShift GitOps operator
   ansible.builtin.include_role:
     name: install_operator
+  when: ocp4_workload_ai_summit2025_openshift_gitops_operator_install | default(true) | bool
   vars:
     install_operator_action: install
     install_operator_name: "{{ ocp4_workload_ai_summit2025_openshift_gitops_operator_name }}"
