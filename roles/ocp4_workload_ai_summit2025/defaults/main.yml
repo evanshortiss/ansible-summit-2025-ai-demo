@@ -4,7 +4,7 @@ silent: false
 guid: smt
 num_users: 5
 
-ocp4_workload_ai_summit2025_openshift_ingress_secret_certs: ingress-certs
+ocp4_workload_ai_summit2025_openshift_ingress_secret_certs: "{{ openshift_ingress_secret_certs_secret }}"
 
 # ------------------------------------------------
 # OpenShift Gitops
@@ -139,7 +139,7 @@ ocp4_workload_ai_summit2025_openshift_gitops_ignore_differences: {}
 ocp4_workload_ai_summit2025_amq_streams_application_namespace: openshift-gitops
 ocp4_workload_ai_summit2025_amq_streams_application_name: amq-streams
 ocp4_workload_ai_summit2025_amq_streams_namespace: kafka
-ocp4_workload_ai_summit2025_amq_streams_gitops_repo: https://github.com/summit2025-ai-demo/helm.git
+ocp4_workload_ai_summit2025_amq_streams_gitops_repo: https://github.com/evanshortiss/helm-summit-2025-ai.git
 ocp4_workload_ai_summit2025_amq_streams_gitops_repo_tag: main
 ocp4_workload_ai_summit2025_amq_streams_gitops_repo_path: amq-streams
 
@@ -154,7 +154,7 @@ ocp4_workload_ai_summit2025_amq_streams_client_secret: parasol
 # Milvus
 # ------------------------------------------------
 
-ocp4_workload_ai_summit2025_milvus_application_repo: https://github.com/summit2025-ai-demo/helm.git
+ocp4_workload_ai_summit2025_milvus_application_repo: https://github.com/evanshortiss/helm-summit-2025-ai.git
 ocp4_workload_ai_summit2025_milvus_application_repo_tag: main
 ocp4_workload_ai_summit2025_milvus_application_repo_path: milvus
 ocp4_workload_ai_summit2025_milvus_application_name: milvus
@@ -170,7 +170,7 @@ ocp4_workload_ai_summit2025_milvus_service: vectordb-milvus
 # Parasol Application
 # ------------------------------------------------
 
-ocp4_workload_ai_summit2025_parasol_application_repo: https://github.com/summit2025-ai-demo/helm.git
+ocp4_workload_ai_summit2025_parasol_application_repo: https://github.com/evanshortiss/helm-summit-2025-ai.git
 ocp4_workload_ai_summit2025_parasol_application_repo_tag: main
 ocp4_workload_ai_summit2025_parasol_application_repo_path: parasol
 ocp4_workload_ai_summit2025_parasol_application_name: parasol
@@ -183,7 +183,7 @@ ocp4_workload_ai_summit2025_parasol_finance_api_service: finance-api
 # Parasol AI Application
 # ------------------------------------------------
 
-ocp4_workload_ai_summit2025_parasol_ai_application_repo: https://github.com/summit2025-ai-demo/helm.git
+ocp4_workload_ai_summit2025_parasol_ai_application_repo: https://github.com/evanshortiss/helm-summit-2025-ai.git
 ocp4_workload_ai_summit2025_parasol_ai_application_repo_tag: main
 ocp4_workload_ai_summit2025_parasol_ai_application_repo_path: parasol-ai
 ocp4_workload_ai_summit2025_parasol_ai_application_name: parasol-ai

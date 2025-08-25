@@ -43,7 +43,7 @@
   kubernetes.core.k8s_info:
     api_version: argoproj.io/v1beta1
     kind: ArgoCD
-    name: openshift-gitops
+    name: argocd
     namespace: openshift-gitops
   register: r_openshift_gitops
   until:
@@ -78,7 +78,7 @@
   kubernetes.core.k8s_json_patch:
     api_version: argoproj.io/v1beta1
     kind: ArgoCD
-    name: openshift-gitops
+    name: argocd
     namespace: openshift-gitops
     patch:
       - op: remove
@@ -94,7 +94,7 @@
   kubernetes.core.k8s_info:
     api_version: "v1"
     kind: Secret
-    name: openshift-gitops-cluster
+    name: argocd-cluster
     namespace: openshift-gitops
   register: r_secret
   until:

@@ -3,6 +3,9 @@
 # set this to false if the openshift-gitops operator is already installed
 openshift_gitops_operator_install=true
 
+# RHTAP uses a different ingresss cert name
+openshift_ingress_secret_certs_secret=cert-manager-ingress-cert
+
 # default model configuration to use for all services
 default_llm_api_key=
 default_llm_model_name=gpt-4o-mini
@@ -10,7 +13,7 @@ default_llm_base_url=https://api.openai.com/v1
 
 # moderation
 moderation_llm_api_key=
-moderation_llm_model_name=
+moderation_llm_model_name=omni-moderation-latest
 moderation_llm_base_url=
 
 # structured_output
@@ -34,7 +37,7 @@ support_llm_model_name=
 support_llm_base_url=
 
 support_embedding_api_key=
-support_embedding_model_name=
+support_embedding_model_name=text-embedding-3-small
 support_embedding_base_url=
 
 # website
@@ -43,6 +46,6 @@ website_llm_model_name=
 website_llm_base_url=
 
 # document-embedding
-document_embedding_model_name=
+document_embedding_model_name=text-embedding-3-small
 document_embedding_api_key=
 document_embedding_base_url=

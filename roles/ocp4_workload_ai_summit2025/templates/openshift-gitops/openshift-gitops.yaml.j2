@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1beta1
 kind: ArgoCD
 metadata:
-  name: openshift-gitops
+  name: argocd
   namespace: openshift-gitops
 spec:
 {% if ocp4_workload_ai_summit2025_openshift_gitops_rbac_update | default(false) | bool %}
