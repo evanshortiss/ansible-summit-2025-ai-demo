@@ -39,6 +39,8 @@ spec:
                 tls:
                   secret:
                     key:
+                      crt: tls.crt
+                      key: tls.key
                     value:
                       crt: {{ ocp4_workload_ai_summit2025_openshift_ingress_cert }}
                       key: {{ ocp4_workload_ai_summit2025_openshift_ingress_key }}
