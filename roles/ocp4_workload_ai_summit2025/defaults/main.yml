@@ -136,6 +136,7 @@ ocp4_workload_ai_summit2025_openshift_gitops_ignore_differences: {}
 # AMQ Streams
 # ------------------------------------------------
 
+ocp4_workload_ai_summit2025_amq_streams_operator_install: "{{ amq_streams_operator_install | default(true) | bool}}"
 ocp4_workload_ai_summit2025_amq_streams_application_namespace: openshift-gitops
 ocp4_workload_ai_summit2025_amq_streams_application_name: amq-streams
 ocp4_workload_ai_summit2025_amq_streams_namespace: kafka
