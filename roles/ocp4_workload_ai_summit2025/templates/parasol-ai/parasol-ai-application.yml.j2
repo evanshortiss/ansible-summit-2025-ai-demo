@@ -25,6 +25,10 @@ spec:
           clientId: {{ ocp4_workload_ai_summit2025_amq_streams_client_id }}
           clientSecret: {{ ocp4_workload_ai_summit2025_amq_streams_client_secret }}
 
+        customer-support-ui:
+          kafka:
+            <<: *kafka
+        
         structured-output:
           kafka:
             <<: *kafka
