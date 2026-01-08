@@ -14,3 +14,9 @@
 
 - name: Install Parasol AI application
   ansible.builtin.include_tasks: parasol_ai.yml
+
+- name: Install Model Registry
+  ansible.builtin.include_tasks: model_registry.yml
+
+- name: Install Red Hat Developer Hub
+  ansible.builtin.include_tasks: rhdh.yml

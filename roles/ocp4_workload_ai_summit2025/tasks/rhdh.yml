@@ -1,0 +1,80 @@
+---
+
+- name: Create ai-rhdh namespace
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: ai-rhdh
+
+- name: Create dynamic-plugins-root PVC
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'rhdh/dynamic-plugins-root-pvc.yaml.j2') | from_yaml }}"
+
+- name: Create rhdh-app-config ConfigMap
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'rhdh/rhdh-app-config.yaml.j2') | from_yaml }}"
+
+- name: Create dynamic-plugins-rhdh ConfigMap
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'rhdh/dynamic-plugins-rhdh.yaml.j2') | from_yaml }}"
+
+- name: Create Backstage CR
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'rhdh/backstage.yaml.j2') | from_yaml }}"
+  retries: 10
+  delay: 30
+  ignore_errors: true
+  register: backstage_result
+  until: backstage_result is not failed
+
+- name: Print Backstage CR creation result
+  ansible.builtin.debug:
+    var: backstage_result
+
+- name: Wait for Backstage deployment to be ready
+  kubernetes.core.k8s_info:
+    api_version: rhdh.redhat.com/v1alpha4
+    kind: Backstage
+    name: developer-hub
+    namespace: ai-rhdh
+  register: r_backstage
+  retries: 60
+  delay: 10
+  until:
+    - r_backstage.resources is defined
+    - r_backstage.resources | length > 0
+    - r_backstage.resources[0].status is defined
+    - r_backstage.resources[0].status.conditions is defined
+    - r_backstage.resources[0].status.conditions | selectattr('type', 'equalto', 'Deployed') | selectattr('status', 'equalto', 'True') | list | length > 0
+  ignore_errors: true
+
+- name: Print Backstage deployment status
+  ansible.builtin.debug:
+    msg: "Red Hat Developer Hub deployed successfully"
+
+- name: Reminder to update GitHub App callback URL
+  ansible.builtin.debug:
+    msg:
+      - "==============================================================================="
+      - "IMPORTANT: Update your GitHub App Callback URL"
+      - "==============================================================================="
+      - ""
+      - "Before users can log in, update your GitHub App's callback URL to:"
+      - "https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}/api/auth/github/handler/frame"
+      - ""
+      - "Steps:"
+      - "1. Go to: https://github.com/organizations/{{ github_organization }}/settings/apps"
+      - "2. Select your GitHub App"
+      - "3. Update the 'Callback URL' field with the URL above"
+      - "4. Click 'Save changes'"
+      - ""
+      - "Without this, GitHub authentication will fail!"
+      - "==============================================================================="
+

@@ -227,3 +227,14 @@ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_base_url: "{{ document
 ocp4_workload_ai_summit2025_parasol_ai_document_embedding_set_dimension: "true"
 ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_collection: support_openai
 ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_drop_collection: false
+
+# ------------------------------------------------
+# Red Hat Developer Hub (RHDH)
+# ------------------------------------------------
+
+# GitHub authentication and catalog provider configuration
+github_organization: "{{ github_organization | default('', true) }}"
+github_app_id: "{{ github_app_id | default('', true) }}"
+github_client_id: "{{ github_client_id | default('', true) }}"
+github_client_secret: "{{ github_client_secret | default('', true) }}"
+github_private_key: "{{ github_private_key | default('', true) }}"

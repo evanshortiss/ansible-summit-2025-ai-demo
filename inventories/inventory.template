@@ -8,6 +8,20 @@ amq_streams_operator_install=false
 # RHTAP uses a different ingresss cert name
 openshift_ingress_secret_certs_secret=cert-manager-ingress-cert
 
+# GitHub configuration for RHDH
+# Create a GitHub App following: https://developers.redhat.com/articles/2025/01/07/backstage-authentication-and-catalog-providers-practical-guide
+github_organization=your-org-name
+github_app_id=123456
+github_client_id=Iv1.abc123def456
+github_client_secret=your-github-app-client-secret
+# For the private key, use a multi-line YAML string with proper indentation
+# Copy the entire contents of your GitHub App's private key .pem file
+github_private_key=|
+  -----BEGIN RSA PRIVATE KEY-----
+  MIIEpAIBAAKCAQEA1234567890abcdefghijklmnopqrstuvwxyz...
+  (paste your full private key here, maintaining the indentation)
+  -----END RSA PRIVATE KEY-----
+
 # default model configuration to use for all services
 default_llm_api_key=
 default_llm_model_name=gpt-4o-mini
