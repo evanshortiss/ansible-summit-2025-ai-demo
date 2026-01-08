@@ -25,6 +25,12 @@ data:
       baseUrl: https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}
       cors:
         origin: https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}
+      auth:
+        externalAccess:
+          - type: static
+            options:
+              token: jHYtxs7CavUaxoI+Rm+Ri6dZm8vf76vp
+              subject: agents
 
     integrations:
       github:
