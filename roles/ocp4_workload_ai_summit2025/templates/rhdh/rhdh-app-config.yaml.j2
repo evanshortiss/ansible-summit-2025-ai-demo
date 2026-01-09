@@ -13,6 +13,7 @@ data:
       title: AI RHDH
       baseUrl: https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}
 
+    signInPage: github
     auth:
       environment: production
       providers:
@@ -42,6 +43,27 @@ data:
               privateKey: |
 {{ github_private_key | indent(16, first=True) }}
               webhookSecret: none
+
+    argocd:
+      appLocatorMethods:
+        - type: 'config'
+          instances:
+            - name: main
+              url: ${ARGOCD_HOST}
+              username: admin
+              password: ${ARGOCD_PASSWORD}
+
+    kubernetes:
+      serviceLocatorMethod:
+        type: multiTenant
+      clusterLocatorMethods:
+        - type: 'config'
+          clusters:
+            - name: dev-cluster
+              url: {{ r_openshift_api_server }}
+              authProvider: serviceAccount
+              skipTLSVerify: true
+              serviceAccountToken: ${KUBERNETES_SA_TOKEN}
 
     catalog:
       rules:

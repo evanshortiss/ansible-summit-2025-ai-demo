@@ -12,6 +12,10 @@ spec:
         - name: rhdh-app-config
       mountPath: /opt/app-root/src
     dynamicPluginsConfigMapName: dynamic-plugins-rhdh
+    extraEnvs:
+      secrets:
+        - name: rhdh-argocd-credentials
+        - name: kubernetes-sa-token
     extraFiles:
       mountPath: /opt/app-root/src
     replicas: 1

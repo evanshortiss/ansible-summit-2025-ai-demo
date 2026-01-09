@@ -1,5 +1,44 @@
 ---
 
+- name: Read GitHub App private key from file
+  ansible.builtin.set_fact:
+    github_private_key: "{{ lookup('file', github_private_key_file) }}"
+  when: github_private_key_file is defined and github_private_key_file | length > 0
+
+- name: Get ArgoCD admin password from openshift-gitops
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    name: openshift-gitops-cluster
+    namespace: openshift-gitops
+  register: r_argocd_secret
+  retries: 30
+  delay: 10
+  until:
+    - r_argocd_secret.resources is defined
+    - r_argocd_secret.resources | length > 0
+
+- name: Set ArgoCD password fact
+  ansible.builtin.set_fact:
+    argocd_password: "{{ r_argocd_secret.resources[0].data['admin.password'] | b64decode }}"
+
+- name: Get ArgoCD route
+  kubernetes.core.k8s_info:
+    api_version: route.openshift.io/v1
+    kind: Route
+    name: openshift-gitops-server
+    namespace: openshift-gitops
+  register: r_argocd_route
+  retries: 30
+  delay: 10
+  until:
+    - r_argocd_route.resources is defined
+    - r_argocd_route.resources | length > 0
+
+- name: Set ArgoCD host fact
+  ansible.builtin.set_fact:
+    argocd_host: "https://{{ r_argocd_route.resources[0].spec.host }}"
+
 - name: Create ai-rhdh namespace
   kubernetes.core.k8s:
     state: present
@@ -23,6 +62,120 @@
   kubernetes.core.k8s:
     state: present
     definition: "{{ lookup('template', 'rhdh/dynamic-plugins-rhdh.yaml.j2') | from_yaml }}"
+
+- name: Create ArgoCD credentials secret
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: rhdh-argocd-credentials
+        namespace: ai-rhdh
+      type: Opaque
+      stringData:
+        ARGOCD_HOST: "{{ argocd_host }}"
+        ARGOCD_PASSWORD: "{{ argocd_password }}"
+
+- name: Create Kubernetes service account for RHDH
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: rhdh-kubernetes-plugin
+        namespace: ai-rhdh
+
+- name: Create ClusterRole for RHDH Kubernetes plugin
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: rhdh-kubernetes-plugin
+      rules:
+        - apiGroups:
+            - '*'
+          resources:
+            - pods
+            - pods/log
+            - services
+            - configmaps
+            - deployments
+            - replicasets
+            - horizontalpodautoscalers
+            - ingresses
+            - statefulsets
+            - daemonsets
+            - jobs
+            - cronjobs
+          verbs:
+            - get
+            - list
+            - watch
+
+- name: Create ClusterRoleBinding for RHDH Kubernetes plugin
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: rhdh-kubernetes-plugin
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: rhdh-kubernetes-plugin
+      subjects:
+        - kind: ServiceAccount
+          name: rhdh-kubernetes-plugin
+          namespace: ai-rhdh
+
+- name: Create token secret for service account
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: rhdh-kubernetes-plugin-token
+        namespace: ai-rhdh
+        annotations:
+          kubernetes.io/service-account.name: rhdh-kubernetes-plugin
+      type: kubernetes.io/service-account-token
+
+- name: Wait for token to be generated
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    name: rhdh-kubernetes-plugin-token
+    namespace: ai-rhdh
+  register: r_sa_token_secret
+  retries: 30
+  delay: 2
+  until:
+    - r_sa_token_secret.resources is defined
+    - r_sa_token_secret.resources | length > 0
+    - r_sa_token_secret.resources[0].data.token is defined
+
+- name: Set Kubernetes SA token fact
+  ansible.builtin.set_fact:
+    kubernetes_sa_token: "{{ r_sa_token_secret.resources[0].data.token | b64decode }}"
+
+- name: Create Kubernetes SA token secret for Backstage
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: kubernetes-sa-token
+        namespace: ai-rhdh
+      type: Opaque
+      stringData:
+        KUBERNETES_SA_TOKEN: "{{ kubernetes_sa_token }}"
 
 - name: Create Backstage CR
   kubernetes.core.k8s:
