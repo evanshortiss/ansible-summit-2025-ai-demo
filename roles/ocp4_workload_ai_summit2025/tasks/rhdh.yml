@@ -48,6 +48,161 @@
       metadata:
         name: ai-rhdh
 
+- name: Create RHOAI connector service account
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: rhdh-rhoai-connector
+        namespace: ai-rhdh
+
+- name: Create RHOAI connector ClusterRole
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: rhdh-rhoai-connector
+        annotations:
+          argocd.argoproj.io/sync-wave: "0"
+      rules:
+        - apiGroups:
+            - apiextensions.k8s.io
+          resources:
+            - customresourcedefinitions
+          verbs:
+            - get
+        - apiGroups:
+            - route.openshift.io
+          resources:
+            - routes
+          verbs:
+            - get
+            - list
+            - watch
+        - apiGroups:
+            - ""
+          resources:
+            - serviceaccounts
+            - services
+          verbs:
+            - get
+            - list
+            - watch
+        - apiGroups:
+            - serving.kserve.io
+          resources:
+            - inferenceservices
+          verbs:
+            - get
+            - list
+            - watch
+
+- name: Create RHOAI connector ClusterRoleBinding
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRoleBinding
+      metadata:
+        name: rhdh-rhoai-connector
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: rhdh-rhoai-connector
+      subjects:
+        - kind: ServiceAccount
+          name: rhdh-rhoai-connector
+          namespace: ai-rhdh
+
+- name: Create RHOAI connector Role in ai-rhdh namespace
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: rhdh-rhoai-connector
+        namespace: ai-rhdh
+      rules:
+        - apiGroups:
+            - ""
+          resources:
+            - configmaps
+          verbs:
+            - get
+            - list
+            - watch
+            - create
+            - update
+            - patch
+
+- name: Create RHOAI connector RoleBinding in ai-rhdh namespace
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: rhdh-rhoai-connector
+        namespace: ai-rhdh
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: rhdh-rhoai-connector
+      subjects:
+        - kind: ServiceAccount
+          name: rhdh-rhoai-connector
+          namespace: ai-rhdh
+
+- name: Create RHOAI dashboard permissions RoleBinding
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: rhdh-rhoai-dashboard-permissions
+        namespace: rhoai-model-registries
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: registry-user-modelregistry-public
+      subjects:
+        - apiGroup: rbac.authorization.k8s.io
+          kind: Group
+          name: system:serviceaccounts:ai-rhdh
+
+- name: Create RHOAI connector service account token secret
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: rhdh-rhoai-connector-token
+        namespace: ai-rhdh
+        annotations:
+          kubernetes.io/service-account.name: rhdh-rhoai-connector
+      type: kubernetes.io/service-account-token
+
+- name: Wait for RHOAI connector token to be generated
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Secret
+    name: rhdh-rhoai-connector-token
+    namespace: ai-rhdh
+  register: r_rhoai_token_secret
+  retries: 30
+  delay: 2
+  until:
+    - r_rhoai_token_secret.resources is defined
+    - r_rhoai_token_secret.resources | length > 0
+    - r_rhoai_token_secret.resources[0].data.token is defined
+
 - name: Create dynamic-plugins-root PVC
   kubernetes.core.k8s:
     state: present
@@ -111,6 +266,8 @@
             - daemonsets
             - jobs
             - cronjobs
+            - resourcequotas
+            - limitranges
           verbs:
             - get
             - list
