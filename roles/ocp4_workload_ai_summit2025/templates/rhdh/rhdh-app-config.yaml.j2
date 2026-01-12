@@ -77,6 +77,10 @@ data:
           target: https://github.com/evanshortiss/summit2025-ai-demo-template-addon/blob/red-hat-one/template.yaml
           rules:
             - allow: [Template]
+        - type: url
+          target: https://github.com/evanshortiss/summit2025-ai-demo-entities/blob/main/catalog-info.yaml
+          rules:
+            - allow: [System, Domain, Group, User, Resource, Component, API, Location, Template]
       providers:
         github:
           providerId:
