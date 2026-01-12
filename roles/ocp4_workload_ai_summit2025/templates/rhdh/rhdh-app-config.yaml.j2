@@ -68,6 +68,11 @@ data:
     catalog:
       rules:
         - allow: [Component, API, Location, Template, System, Domain, User, Group, Resource]
+      locations:
+        - type: url
+          target: https://github.com/redhat-ai-dev/ai-lab-template/blob/release-v0.11.x/all.yaml
+          rules:
+            - allow: [Template]
       providers:
         github:
           providerId:
