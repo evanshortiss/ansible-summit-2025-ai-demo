@@ -232,6 +232,13 @@ ocp4_workload_ai_summit2025_parasol_ai_document_embedding_milvus_drop_collection
 # Red Hat Developer Hub (RHDH)
 # ------------------------------------------------
 
+# RHDH Operator installation
+ocp4_workload_ai_summit2025_rhdh_operator_install: "{{ rhdh_operator_install | default(true) | bool }}"
+ocp4_workload_ai_summit2025_rhdh_operator_channel: fast-1.8
+ocp4_workload_ai_summit2025_rhdh_operator_namespace: rhdh-operator
+ocp4_workload_ai_summit2025_rhdh_operator_name: rhdh
+ocp4_workload_ai_summit2025_rhdh_operator_catalog: redhat-operators
+
 # GitHub authentication and catalog provider configuration
 github_organization: "{{ github_organization | default('', true) }}"
 github_app_id: "{{ github_app_id | default('', true) }}"

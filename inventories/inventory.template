@@ -4,6 +4,8 @@
 openshift_gitops_operator_install=false
 # set to false if amq streams is already installed
 amq_streams_operator_install=false
+# set to false if the Red Hat Developer Hub operator is already installed
+rhdh_operator_install=true
 
 # RHTAP uses a different ingresss cert name
 openshift_ingress_secret_certs_secret=cert-manager-ingress-cert

@@ -1,5 +1,18 @@
 ---
 
+- name: Install Red Hat Developer Hub operator
+  ansible.builtin.include_role:
+    name: install_operator
+  when: ocp4_workload_ai_summit2025_rhdh_operator_install | default(true) | bool
+  vars:
+    install_operator_action: install
+    install_operator_name: "{{ ocp4_workload_ai_summit2025_rhdh_operator_name }}"
+    install_operator_namespace: "{{ ocp4_workload_ai_summit2025_rhdh_operator_namespace }}"
+    install_operator_channel: "{{ ocp4_workload_ai_summit2025_rhdh_operator_channel }}"
+    install_operator_catalog: "{{ ocp4_workload_ai_summit2025_rhdh_operator_catalog }}"
+    install_operator_automatic_install_plan_approval: true
+    install_operator_csv_nameprefix: rhdh-operator
+
 - name: Read GitHub App private key from file
   ansible.builtin.set_fact:
     github_private_key: "{{ lookup('file', github_private_key_file) }}"
