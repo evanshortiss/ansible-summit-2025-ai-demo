@@ -26,6 +26,15 @@ data:
       baseUrl: https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}
       cors:
         origin: https://backstage-developer-hub-ai-rhdh.{{ r_openshift_subdomain }}
+      csp:
+        connect-src:
+          - "'self'"
+          - 'http:'
+          - 'https:'
+        img-src:
+          - "'self'"
+          - 'data:'
+          - 'https://avatars.githubusercontent.com'
       auth:
         externalAccess:
           - type: static

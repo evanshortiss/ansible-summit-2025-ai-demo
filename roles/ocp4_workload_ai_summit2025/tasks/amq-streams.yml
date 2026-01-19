@@ -113,8 +113,8 @@
     - r_csv.resources[0].status.phase is defined
     - r_csv.resources[0].status.phase == "Succeeded"
   loop:
-    - amqstreams.v3.1.0-6
-    - amq-streams-console.v2.9.3-6
+    - amqstreams.v3.1.0-7
+    - amq-streams-console.v2.9.3-7
   ignore_errors: true
 
 - name: Print AMQ Streams operator installation status
